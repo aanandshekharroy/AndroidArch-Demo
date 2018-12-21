@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Cover</string>
+    <string name="what_s_your_address">What\'s your address?</string>
+    <string name="loading">Loading...</string>
+</resources>
