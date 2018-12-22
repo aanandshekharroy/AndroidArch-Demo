@@ -9,7 +9,11 @@
             android:label="@string/choose_your_location"
             tools:layout="@layout/auto_complete_fragment">
         <action android:id="@+id/action_location_selection_to_insurance_carrier_selection"
-                app:destination="@id/insurance_carriers">
+                app:destination="@id/insurance_carriers"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right">
         </action>
     </fragment>
     <fragment android:id="@+id/insurance_carriers"

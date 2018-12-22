@@ -1,16 +1,18 @@
 package com.example.theseus.cover.ui.autocomplete
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.theseus.cover.CoverApplication
 import com.example.theseus.cover.R
 import com.example.theseus.cover.di.modules.AutocompleteModule
+import com.example.theseus.cover.ui.autocomplete.AutoCompleteDirections.actionLocationSelectionToInsuranceCarrierSelection
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -94,8 +96,10 @@ class AutoComplete : Fragment() {
     }
 
     private fun placeSelected(place: Places) {
-//        val navDirection = action
-//        findNavController(view!!)
+        view?.let {
+            val navDirections = actionLocationSelectionToInsuranceCarrierSelection()
+            findNavController(it).navigate(R.id.action_location_selection_to_insurance_carrier_selection)
+        }
     }
 
     override fun onDestroyView() {

@@ -1,7 +1,7 @@
 package com.example.theseus.cover.ui.autocomplete
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.theseus.cover.data.IDataManager
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject

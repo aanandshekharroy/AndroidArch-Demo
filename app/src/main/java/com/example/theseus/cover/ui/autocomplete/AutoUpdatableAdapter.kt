@@ -1,7 +1,7 @@
 package com.example.theseus.cover.ui.autocomplete
 
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 
 interface AutoUpdatableAdapter {
 

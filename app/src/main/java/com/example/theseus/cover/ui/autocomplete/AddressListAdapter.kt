@@ -1,9 +1,9 @@
 package com.example.theseus.cover.ui.autocomplete
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.example.theseus.cover.R
 import kotlinx.android.synthetic.main.address_item.view.*
 import kotlin.properties.Delegates
@@ -28,12 +28,14 @@ AutoUpdatableAdapter{
         holder.bind(holder.adapterPosition)
     }
 
-    inner class AddressItemViewHolder(val view: View):RecyclerView.ViewHolder(view){
+    inner class AddressItemViewHolder(val view: View): RecyclerView.ViewHolder(view){
         fun bind(adapterPosition: Int) {
             val place = addressList[adapterPosition]
             view.address_title.text = place.title
             view.address_subtitle.text = place.subtitle
-            mAddressClickListener(addressList[adapterPosition])
+            view.setOnClickListener {
+                mAddressClickListener(addressList[adapterPosition])
+            }
         }
 
     }

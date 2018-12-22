@@ -1,7 +1,7 @@
 package com.example.theseus.cover.ui.insuranceChoice
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel;
 import javax.inject.Inject
 
 class InsuranceChoiceViewModel @Inject constructor(val insuranceCarriers: List<String>): ViewModel() {
