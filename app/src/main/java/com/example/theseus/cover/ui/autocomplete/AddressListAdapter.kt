@@ -10,6 +10,7 @@ import kotlin.properties.Delegates
 
 class AddressListAdapter: RecyclerView.Adapter<AddressListAdapter.AddressItemViewHolder>(),
 AutoUpdatableAdapter{
+    lateinit var mAddressClickListener: (p: Places) ->Unit
     var addressList : List<Places> by Delegates.observable(emptyList()){
         _, oldValue, newValue ->
         autoNotify(oldValue,newValue){
@@ -32,6 +33,7 @@ AutoUpdatableAdapter{
             val place = addressList[adapterPosition]
             view.address_title.text = place.title
             view.address_subtitle.text = place.subtitle
+            mAddressClickListener(addressList[adapterPosition])
         }
 
     }

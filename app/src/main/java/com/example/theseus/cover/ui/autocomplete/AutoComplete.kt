@@ -51,6 +51,9 @@ class AutoComplete : Fragment() {
 
     private fun setupViews() {
         address_list.layoutManager = LinearLayoutManager(requireContext())
+        mAdapter.mAddressClickListener = {
+            placeSelected(it)
+        }
         address_list.adapter = mAdapter
         viewModel.autoCompleteResults.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -88,6 +91,11 @@ class AutoComplete : Fragment() {
                 )
         )
 
+    }
+
+    private fun placeSelected(place: Places) {
+//        val navDirection = action
+//        findNavController(view!!)
     }
 
     override fun onDestroyView() {

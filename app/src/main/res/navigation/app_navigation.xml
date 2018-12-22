@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/app_navigation"
+            app:startDestination="@id/choose_your_location">
+    <fragment android:id="@+id/choose_your_location"
+            android:name="com.example.theseus.cover.ui.autocomplete.AutoComplete"
+            android:label="@string/choose_your_location"
+            tools:layout="@layout/auto_complete_fragment">
+        <action android:id="@+id/action_location_selection_to_insurance_carrier_selection"
+                app:destination="@id/insurance_carriers">
+        </action>
+    </fragment>
+    <fragment android:id="@+id/insurance_carriers"
+            android:name="com.example.theseus.cover.ui.insuranceChoice.InsuranceChoice"
+            android:label="@string/insurance_carriers"
+            tools:layout="@layout/insurance_choice_fragment">
+
+    </fragment>
+</navigation>

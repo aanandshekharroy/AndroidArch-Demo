@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -52,4 +54,7 @@ dependencies {
     debugImplementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
     implementation 'com.jakewharton.timber:timber:4.7.1'
+    //Vavigation component
+    implementation "android.arch.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "android.arch.navigation:navigation-ui-ktx:$navigationVersion"
 }
