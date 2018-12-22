@@ -4,12 +4,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+//        setSupportActionBar(toolbar)
 //        setSupportActionBar()
 //        if (savedInstanceState == null) {
 //            supportFragmentManager.beginTransaction()
@@ -26,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupNavigation() {
         val navigationController = Navigation.findNavController(this,R.id.nav_host_fragment)
 //        set
-//        setu
+        NavigationUI.setupActionBarWithNavController(this,navigationController)
     }
 
 }
