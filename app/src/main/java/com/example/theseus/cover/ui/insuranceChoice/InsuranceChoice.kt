@@ -1,5 +1,6 @@
 package com.example.theseus.cover.ui.insuranceChoice
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.theseus.cover.CoverApplication
 import com.example.theseus.cover.R
 import com.example.theseus.cover.di.modules.InsuranceChoiceModule
+import com.example.theseus.cover.ui.OnFragmentInteractionListener
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -32,6 +35,20 @@ class InsuranceChoice : Fragment() {
     lateinit var mCompositeDisposable: CompositeDisposable
     @Inject
     lateinit var mInsuranceCarriersAdapter: InsuranceCarriersAdapter
+    private var listener: OnFragmentInteractionListener? = null
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if(context is OnFragmentInteractionListener){
+            listener = context
+        }else{
+            throw RuntimeException("Activity should implement OnFragmentInteractionListener")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,9 +67,9 @@ class InsuranceChoice : Fragment() {
 
     private fun setupViews() {
         insurer_list.layoutManager = LinearLayoutManager(requireContext())
-//        mInsuranceCarriersAdapter.mListener{
-//
-//        }
+        mInsuranceCarriersAdapter.mItemClickListener = {
+            findNavController().navigate(R.id.complete_registration)
+        }
         insurer_list.adapter = mInsuranceCarriersAdapter
         viewModel.insurersCarriersList.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -78,6 +95,7 @@ class InsuranceChoice : Fragment() {
 
 
         )
+        listener?.setProgressBarToComplete()
 }
 
     override fun onDestroyView() {

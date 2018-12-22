@@ -28,7 +28,9 @@
             android:layout_marginTop="@dimen/dp_16"
             android:layout_marginStart="@dimen/dp_16"
             android:layout_marginEnd="@dimen/dp_16"
-            android:textSize="@dimen/sp_26"
+            android:textSize="@dimen/sp_24"
+            android:hint="@string/eg_geiko"
+            android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title"/>

@@ -16,6 +16,7 @@ class InsuranceCarriersAdapter: RecyclerView.Adapter<InsuranceCarriersAdapter.In
             o,n->o==n
         }
     }
+    lateinit var mItemClickListener: (insuranceCarrier: String) -> Unit
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): InsuranceCarrierViewHolder {
         return InsuranceCarrierViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.insurer_item,parent,false))
     }
@@ -33,6 +34,9 @@ class InsuranceCarriersAdapter: RecyclerView.Adapter<InsuranceCarriersAdapter.In
     inner class InsuranceCarrierViewHolder(val view: View): RecyclerView.ViewHolder(view){
         fun bind(adapterPosition: Int) {
             view.insurer_name.text = insuranceCarriersList[adapterPosition]
+            view.setOnClickListener {
+                mItemClickListener(insuranceCarriersList[adapterPosition])
+            }
         }
 
     }

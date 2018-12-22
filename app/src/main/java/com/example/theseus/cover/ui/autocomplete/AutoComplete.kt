@@ -1,5 +1,6 @@
 package com.example.theseus.cover.ui.autocomplete
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.theseus.cover.CoverApplication
 import com.example.theseus.cover.R
 import com.example.theseus.cover.di.modules.AutocompleteModule
+import com.example.theseus.cover.ui.OnFragmentInteractionListener
 import com.example.theseus.cover.ui.autocomplete.AutoCompleteDirections.actionLocationSelectionToInsuranceCarrierSelection
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -33,7 +35,20 @@ class AutoComplete : Fragment() {
     lateinit var mAdapter: AddressListAdapter
     @Inject
     lateinit var mCompositeDisposable: CompositeDisposable
+    private var listener: OnFragmentInteractionListener? = null
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if(context is OnFragmentInteractionListener){
+            listener = context
+        }else{
+            throw RuntimeException("Activity should implement OnFragmentInteractionListener")
+        }
+    }
 
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -92,6 +107,7 @@ class AutoComplete : Fragment() {
                     }
                 )
         )
+        listener?.setProgressBarToHalf()
 
     }
 
