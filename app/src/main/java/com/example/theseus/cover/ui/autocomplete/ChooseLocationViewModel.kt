@@ -6,11 +6,11 @@ import com.example.theseus.cover.data.IDataManager
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 
-class AutoCompleteViewModel(val mDataManager: IDataManager, val mCompositeDisposable: CompositeDisposable)
+class ChooseLocationViewModel(val mDataManager: IDataManager, val mCompositeDisposable: CompositeDisposable)
     : ViewModel() {
     fun findMatchingPlaces(value: String) {
         isFetchingData.value = true
-
+        networkCallSuccessful.value = true
         mCompositeDisposable.add(
             mDataManager.fetchPlaces(value)
                 .map {
@@ -24,12 +24,14 @@ class AutoCompleteViewModel(val mDataManager: IDataManager, val mCompositeDispos
                     autoCompleteResults.postValue(it)
                 }, onError = {
                     isFetchingData.postValue(false)
+                    networkCallSuccessful.postValue(false)
                 }
             )
         )
     }
     val isFetchingData = MutableLiveData<Boolean>()
     val autoCompleteResults = MutableLiveData<List<Places>>()
+    val networkCallSuccessful = MutableLiveData<Boolean>()
     override fun onCleared() {
         mCompositeDisposable.dispose()
         super.onCleared()

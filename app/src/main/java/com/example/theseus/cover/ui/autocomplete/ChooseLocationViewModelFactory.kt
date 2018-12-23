@@ -12,6 +12,6 @@ class ChooseLocationViewModelFactory @Inject constructor(val mDataManager: IData
                                                          val mCompositeDisposable: CompositeDisposable)
     : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return AutoCompleteViewModel(mDataManager,mCompositeDisposable) as T
+        return ChooseLocationViewModel(mDataManager,mCompositeDisposable) as T
     }
 }

@@ -14,7 +14,7 @@ import com.example.theseus.cover.CoverApplication
 import com.example.theseus.cover.R
 import com.example.theseus.cover.di.modules.AutocompleteModule
 import com.example.theseus.cover.ui.OnFragmentInteractionListener
-import com.example.theseus.cover.ui.autocomplete.AutoCompleteDirections.actionLocationSelectionToInsuranceCarrierSelection
+import com.google.android.material.snackbar.Snackbar
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -30,7 +30,7 @@ class ChooseLocation : Fragment() {
     }
     @Inject
     lateinit var chooseLocationViewModelFactory: ChooseLocationViewModelFactory
-    lateinit var viewModel: AutoCompleteViewModel
+    lateinit var viewModel: ChooseLocationViewModel
     @Inject
     lateinit var mAdapter: AddressListAdapter
     @Inject
@@ -62,7 +62,7 @@ class ChooseLocation : Fragment() {
             .autoCompleteComponent(AutocompleteModule())
             .inject(this)
         viewModel = ViewModelProviders.of(this,chooseLocationViewModelFactory)
-            .get(AutoCompleteViewModel::class.java)
+            .get(ChooseLocationViewModel::class.java)
         setupViews()
     }
 
@@ -108,12 +108,26 @@ class ChooseLocation : Fragment() {
                 )
         )
         listener?.setProgressBarToHalf()
+        viewModel.networkCallSuccessful.observe(viewLifecycleOwner, Observer {
+            if(!it){
+                showErrorInSnackbar()
+            }
+        })
+    }
 
+    private fun showErrorInSnackbar() {
+        Snackbar.make(choose_location, R.string.something_went_wrong, Snackbar.LENGTH_LONG).apply {
+
+            setAction(
+                R.string.try_again
+            ) { viewModel.findMatchingPlaces(address_value.text.toString()) }
+            show()
+
+        }
     }
 
     private fun placeSelected(place: Places) {
         view?.let {
-            val navDirections = actionLocationSelectionToInsuranceCarrierSelection()
             findNavController(it).navigate(R.id.action_location_selection_to_insurance_carrier_selection)
         }
     }
