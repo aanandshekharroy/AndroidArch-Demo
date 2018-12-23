@@ -8,8 +8,8 @@ import javax.inject.Inject
 
 
 @Suppress("UNCHECKED_CAST")
-class AutoCompleteViewModelFactory @Inject constructor(val mDataManager: IDataManager,
-                                                       val mCompositeDisposable: CompositeDisposable)
+class ChooseLocationViewModelFactory @Inject constructor(val mDataManager: IDataManager,
+                                                         val mCompositeDisposable: CompositeDisposable)
     : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return AutoCompleteViewModel(mDataManager,mCompositeDisposable) as T

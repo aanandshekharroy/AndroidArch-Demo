@@ -19,17 +19,17 @@ import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
-import kotlinx.android.synthetic.main.auto_complete_fragment.*
+import kotlinx.android.synthetic.main.choose_location_fragment.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class AutoComplete : Fragment() {
+class ChooseLocation : Fragment() {
 
     companion object {
-        fun newInstance() = AutoComplete()
+        fun newInstance() = ChooseLocation()
     }
     @Inject
-    lateinit var autoCompleteViewModelFactory: AutoCompleteViewModelFactory
+    lateinit var chooseLocationViewModelFactory: ChooseLocationViewModelFactory
     lateinit var viewModel: AutoCompleteViewModel
     @Inject
     lateinit var mAdapter: AddressListAdapter
@@ -53,7 +53,7 @@ class AutoComplete : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.auto_complete_fragment, container, false)
+        return inflater.inflate(R.layout.choose_location_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -61,7 +61,7 @@ class AutoComplete : Fragment() {
         (requireContext().applicationContext as CoverApplication).mApplicationComponent
             .autoCompleteComponent(AutocompleteModule())
             .inject(this)
-        viewModel = ViewModelProviders.of(this,autoCompleteViewModelFactory)
+        viewModel = ViewModelProviders.of(this,chooseLocationViewModelFactory)
             .get(AutoCompleteViewModel::class.java)
         setupViews()
     }
