@@ -4,6 +4,7 @@ buildscript {
     ext{
         kotlin_version = '1.2.71'
         navigationVersion = '1.0.0-alpha07'
+        mockito_version = '2.7.1'
     }
     repositories {
         google()

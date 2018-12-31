@@ -1,10 +1,10 @@
 package com.example.theseus.cover.di.components
 
-import com.example.theseus.cover.di.modules.AutocompleteModule
-import com.example.theseus.cover.ui.autocomplete.ChooseLocation
+import com.example.theseus.cover.di.modules.ChooseLocationModule
+import com.example.theseus.cover.ui.chooseLocation.ChooseLocation
 import dagger.Subcomponent
 
-@Subcomponent(modules = [AutocompleteModule::class])
+@Subcomponent(modules = [ChooseLocationModule::class])
 interface AutocompleteComponent {
     fun inject(chooseLocation: ChooseLocation)
 }

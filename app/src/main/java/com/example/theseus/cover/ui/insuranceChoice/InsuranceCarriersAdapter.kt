@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.theseus.cover.R
-import com.example.theseus.cover.ui.autocomplete.AutoUpdatableAdapter
+import com.example.theseus.cover.ui.chooseLocation.AutoUpdatableAdapter
 import kotlinx.android.synthetic.main.insurer_item.view.*
 import kotlin.properties.Delegates
 

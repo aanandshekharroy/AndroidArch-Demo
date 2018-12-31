@@ -1,4 +1,4 @@
-package com.example.theseus.cover.ui.autocomplete
+package com.example.theseus.cover.ui.chooseLocation
 
 import android.view.LayoutInflater
 import android.view.View

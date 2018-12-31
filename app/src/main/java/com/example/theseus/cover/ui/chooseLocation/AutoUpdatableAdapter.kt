@@ -1,4 +1,4 @@
-package com.example.theseus.cover.ui.autocomplete
+package com.example.theseus.cover.ui.chooseLocation
 
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView

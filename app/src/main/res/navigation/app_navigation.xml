@@ -5,7 +5,7 @@
             android:id="@+id/app_navigation"
             app:startDestination="@id/start_registration">
     <fragment android:id="@+id/choose_your_location"
-            android:name="com.example.theseus.cover.ui.autocomplete.ChooseLocation"
+            android:name="com.example.theseus.cover.ui.chooseLocation.ChooseLocation"
             android:label="@string/choose_your_location"
             tools:layout="@layout/choose_location_fragment">
         <action android:id="@+id/action_location_selection_to_insurance_carrier_selection"

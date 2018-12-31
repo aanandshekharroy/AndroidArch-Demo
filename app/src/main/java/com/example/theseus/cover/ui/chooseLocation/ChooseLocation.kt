@@ -1,4 +1,4 @@
-package com.example.theseus.cover.ui.autocomplete
+package com.example.theseus.cover.ui.chooseLocation
 
 import android.content.Context
 import android.os.Bundle
@@ -7,12 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.theseus.cover.CoverApplication
 import com.example.theseus.cover.R
-import com.example.theseus.cover.di.modules.AutocompleteModule
+import com.example.theseus.cover.di.modules.ChooseLocationModule
 import com.example.theseus.cover.ui.OnFragmentInteractionListener
 import com.google.android.material.snackbar.Snackbar
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -29,7 +28,6 @@ class ChooseLocation : Fragment() {
         fun newInstance() = ChooseLocation()
     }
     @Inject
-    lateinit var chooseLocationViewModelFactory: ChooseLocationViewModelFactory
     lateinit var viewModel: ChooseLocationViewModel
     @Inject
     lateinit var mAdapter: AddressListAdapter
@@ -59,10 +57,8 @@ class ChooseLocation : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (requireContext().applicationContext as CoverApplication).mApplicationComponent
-            .autoCompleteComponent(AutocompleteModule())
+            .autoCompleteComponent(ChooseLocationModule(this))
             .inject(this)
-        viewModel = ViewModelProviders.of(this,chooseLocationViewModelFactory)
-            .get(ChooseLocationViewModel::class.java)
         setupViews()
     }
 
