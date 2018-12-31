@@ -4,7 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
 import javax.inject.Inject
 
-class InsuranceChoiceViewModel @Inject constructor(val insuranceCarriers: List<String>): ViewModel() {
+class InsuranceChoiceViewModel @Inject constructor(val insuranceCarriers: List<String>,
+                                                   val insurersCarriersList:MutableLiveData<List<String>>)
+    : ViewModel() {
     fun insurerValueChanged(insurerCarrier: String) {
         if(insurerCarrier.isEmpty()){
             insurersCarriersList.value = insuranceCarriers
@@ -14,10 +16,5 @@ class InsuranceChoiceViewModel @Inject constructor(val insuranceCarriers: List<S
                 it.startsWith(insurerCarrier,true)
             }
         }
-    }
-
-    val insurersCarriersList = MutableLiveData<List<String>>()
-    init {
-        insurersCarriersList.value = insuranceCarriers
     }
 }

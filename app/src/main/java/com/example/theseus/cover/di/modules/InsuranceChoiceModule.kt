@@ -1,10 +1,10 @@
 package com.example.theseus.cover.di.modules
 
 import android.content.Context
+import androidx.lifecycle.MutableLiveData
 import com.example.theseus.cover.R
 import com.example.theseus.cover.ui.insuranceChoice.InsuranceCarriersAdapter
 import com.example.theseus.cover.ui.insuranceChoice.InsuranceCarriersModel
-import com.example.theseus.cover.ui.insuranceChoice.InsuranceChoiceViewModelFactory
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -38,5 +38,8 @@ class InsuranceChoiceModule(val applicationContext: Context) {
         }
     }
     @Provides
-    fun provideInsuranceChoiceViewModelFactory(insuranceCarriers: List<String>) = InsuranceChoiceViewModelFactory(insuranceCarriers)
+    fun provideMutableLiveDataForInsuranceList(insuranceCarriers: List<String>)
+            = MutableLiveData<List<String>>().apply {
+        value = insuranceCarriers
+    }
 }
